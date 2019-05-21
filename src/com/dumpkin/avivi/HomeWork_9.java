@@ -9,37 +9,82 @@
 
 package com.dumpkin.avivi;
 
+import java.util.Scanner;
+
 public class HomeWork_9 {
 
 
     public static void main(String[] args) {
+//______________________________________________________________________
+
         System.out.println("Homework #9/1");
 
-        Zakaz[] zakazList=new Zakaz[10];
+        Zakaz[] zakazList = new Zakaz[10];
 
-        Material magister=new Material(700,498,230,Paper.CELULOSE);
+        Material magister = new Material(700, 498, 230, Paper.CELULOSE);
         magister.setSheetCost(10.3f);
 
-        Material multiColor=new Material(1020,700,300,Paper.MO);
+        Material multiColor = new Material(1020, 700, 300, Paper.MO);
         multiColor.setSheetCost(3.6f);
 
         Contragent avalon = new Contragent();
-        avalon.agentName="Sergey Kakashin";
-        avalon.companyName="Avalon INC";
+        avalon.agentName = "Sergey Kakashin";
+        avalon.companyName = "Avalon INC";
 
 
         Contragent sigara = new Contragent();
-        sigara.agentName="Mihailo Sukin";
-        sigara.companyName="Verblood (C)";
+        sigara.agentName = "Mihailo Sukin";
+        sigara.companyName = "Verblood (C)";
 
-        zakazList[0]=new Zakaz(avalon,magister,3000);
+        zakazList[0] = new Zakaz(avalon, magister, 3000);
         zakazList[0].setStatus(Status.COMPLETE);
-        zakazList[1]=new Zakaz(sigara,multiColor,8400);
+        zakazList[1] = new Zakaz(sigara, multiColor, 8400);
 
-        System.out.printf("contragent № %d \n" ,avalon.number);
-        System.out.println("Company: "+ avalon.companyName+ "\n"+
-                "Profit : "+zakazList[0].getPrice()+"\n"+
-                "Status: "+zakazList[0].getStatus());
+        System.out.printf("contragent № %d \n", avalon.number);
+        System.out.println("Company: " + avalon.companyName + "\n" +
+                "Profit : " + zakazList[0].getPrice() + "\n" +
+                "Status: " + zakazList[0].getStatus());
+
+//________________________________________________________________
+
+        System.out.println("Homework #9/2");
+//________________________________________________________________
+        System.out.println("Input integer value: ");
+
+        Scanner scan = new Scanner(System.in);
+        String inputValue = scan.nextLine();
+        Integer compare;
+        String text;
+        NumStatus numStatus;
+
+//catching error input value
+        try {
+            compare = Integer.valueOf(inputValue);
+        } catch (NumberFormatException e) {
+            compare=null;
+            numStatus=NumStatus.ERROR;
+            System.out.println(numStatus);
+            System.out.println("Wrong input value!");
+            return;
+        }
+
+        text = String.valueOf(compare);
+
+//compare converted integer value with input text
+
+        if (text.equals(inputValue)) {
+            if (compare % 2 == 0) {
+                numStatus = NumStatus.EVEN;
+                System.out.printf(" You entered " + numStatus + " value");
+
+            }
+
+            if ((compare % 2) != 0) {
+                numStatus = NumStatus.ODD;
+                System.out.printf(" You entered " + numStatus + " value");
+
+            }
+        }
 
     }
 }
